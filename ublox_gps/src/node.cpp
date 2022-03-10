@@ -128,6 +128,8 @@ void UbloxNode::addProductInterface(std::string product_category,
     components_.push_back(ComponentPtr(new AdrUdrProduct(protocol_version_)));
   else if (product_category.compare("FTS") == 0)
     components_.push_back(ComponentPtr(new FtsProduct));
+  else if (product_category.compare("HPS") == 0)
+    components_.push_back(ComponentPtr(new AdrUdrProduct(protocol_version_)));
   else if(product_category.compare("SPG") != 0)
     ROS_WARN("Product category %s %s from MonVER message not recognized %s",
              product_category.c_str(), ref_rov.c_str(),
