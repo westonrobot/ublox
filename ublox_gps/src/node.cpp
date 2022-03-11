@@ -133,7 +133,7 @@ void UbloxNode::addProductInterface(std::string product_category,
   else if(product_category.compare("SPG") != 0)
     ROS_WARN("Product category %s %s from MonVER message not recognized %s",
              product_category.c_str(), ref_rov.c_str(),
-             "options are HPG REF, HPG ROV, HPG #.#, HDG #.#, TIM, ADR, UDR, FTS, SPG");
+             "options are HPG REF, HPG ROV, HPG #.#, HDG #.#, TIM, ADR, UDR, FTS, HPS, SPG");
 }
 
 void UbloxNode::getRosParams() {
@@ -1332,6 +1332,12 @@ void AdrUdrProduct::subscribe() {
     gps.subscribe<ublox_msgs::NavATT>(boost::bind(
         publish<ublox_msgs::NavATT>, _1, "navatt"), kSubscribeRate);
 
+  // Subscribe to ESF ALG messages
+  nh->param("publish/esf/alg", enabled["esf_alg"], enabled["esf"]);
+  if (enabled["esf_alg"])
+    gps.subscribe<ublox_msgs::EsfALG>(boost::bind(
+        publish<ublox_msgs::EsfALG>, _1, "esfalg"), kSubscribeRate);
+  
   // Subscribe to ESF INS messages
   nh->param("publish/esf/ins", enabled["esf_ins"], enabled["esf"]);
   if (enabled["esf_ins"])

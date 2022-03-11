@@ -9,6 +9,7 @@ inf:
 
 publish:
   esf:
+    alg: true
     meas: true
     status: true
   nav:
