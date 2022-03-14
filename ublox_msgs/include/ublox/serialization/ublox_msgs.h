@@ -849,6 +849,7 @@ struct Serializer<ublox_msgs::EsfSTATUS_<ContainerAllocator> > {
     ros::serialization::IStream stream(const_cast<uint8_t *>(data), count);
     stream.next(m.iTOW);
     stream.next(m.version);
+    stream.next(m.reserved1);
     stream.next(m.fusionMode);
     stream.next(m.reserved2);
     stream.next(m.numSens);
@@ -869,6 +870,7 @@ struct Serializer<ublox_msgs::EsfSTATUS_<ContainerAllocator> > {
     ros::serialization::OStream stream(data, size);
     stream.next(m.iTOW);
     stream.next(m.version);
+    stream.next(m.reserved1);
     stream.next(m.fusionMode);
     stream.next(m.reserved2);
     stream.next(static_cast<typename Msg::_numSens_type>(m.sens.size()));
