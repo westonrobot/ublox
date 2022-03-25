@@ -1410,6 +1410,8 @@ void AdrUdrProduct::callbackEsfMEAS(const ublox_msgs::EsfMEAS &m) {
           imu_.linear_acceleration.z = data_value * m_per_sec_sq;
       } else if (data_type == 12) {
         //ROS_INFO("Temperature in celsius: %f", data_value * deg_c); 
+      } else if (data_type == 10) {
+        ROS_INFO("Wheel ticks: %d in direction %d", data_value & 0x7fffff, data_value >> 23);
       } else {
         ROS_INFO("data_type: %u", data_type);
         ROS_INFO("data_value: %u", data_value);
