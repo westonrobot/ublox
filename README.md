@@ -367,3 +367,14 @@ For debugging messages set the debug parameter to > 0. The range for debug is 0-
 
 # Links
 Consult the [official protocol spec](https://www.u-blox.com/sites/default/files/products/documents/u-blox8-M8_ReceiverDescrProtSpec_(UBX-13003221)_Public.pdf) for details on packets supported by u-blox devices.
+
+
+# Differentiate RTK float and fix
+In this package, the rtk status is denoted in bits 7-6 in the flags variable in the navpvt msg.
+
+Carrier phase range solution status:
+* 0 = no carrier phase range solution
+* 1 = carrier phase range solution with floating
+ambiguities (Float Fix)
+* 2 = carrier phase range solution with fixed
+ambiguities (RTK Fixed)
